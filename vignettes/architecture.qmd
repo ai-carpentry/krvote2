@@ -1,0 +1,197 @@
+---
+title: "중앙선거관리위원회 설계도"
+output: html
+mermaid-format: svg
+vignette: >
+  %\VignetteIndexEntry{중앙선거관리위원회 설계도}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(krvote2)
+```
+
+# 핵심정보
+
+당선인, 코드정보, 후보자정보, 선거인수, 투개표 정보 중심 정보를 담고 있는 테이블입니다.
+
+```{mermaid}
+erDiagram
+    WINNER_INFO {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR electionTypeCode PK "선거종류코드"
+        VARCHAR candidateId PK "후보자ID"
+        VARCHAR constituencyName "선거구명"
+        VARCHAR cityName "시도명"
+        VARCHAR countyName "구시군명"
+        VARCHAR candidateNo "기호"
+        VARCHAR candidateNoDetail "기호상세"
+        VARCHAR partyName "정당명"
+        VARCHAR name "한글성명"
+        VARCHAR hanjaMeaning "한자성명"
+        VARCHAR gender "성별"
+        DATE birthday "생년월일"
+        INT age "연령"
+        VARCHAR address "주소"
+        VARCHAR jobId FK "직업ID"
+        VARCHAR job "직업"
+        VARCHAR educationId FK "학력ID"
+        VARCHAR education "학력"
+        VARCHAR career1 "경력1"
+        VARCHAR career2 "경력2"
+        INT voteCount "득표수"
+        DECIMAL voteRate "득표율"
+    }
+    
+    VOTING_STATUS {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR electionTypeCode PK "선거종류코드"  
+        VARCHAR cityName "시도명"
+        VARCHAR countyName "구시군명"
+        INT totalElector "총 선거인수"
+        INT electionDayElector "선거일투표 선거인수"
+        INT absenteeElector "거소·사전·선상·재외 선거인수"
+        INT totalVoter "총 투표자수"
+        INT electionDayVoter "선거일 투표자수" 
+        INT absenteeVoter "거소·사전·선상·재외 투표자수"
+        DECIMAL turnout "투표율"
+    }
+
+    COUNTING_STATUS {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR electionTypeCode PK "선거종류코드"
+        VARCHAR constituencyName "선거구명"
+        VARCHAR cityName "시도명" 
+        VARCHAR countyName "구시군명"
+        INT electorCount "선거인수"
+        INT voteCount "투표수"
+        INT validVoteCount "유효투표수"
+        INT invalidVoteCount "무효투표수"
+        INT absenteeCount "기권수"
+        VARCHAR party01 "정당명1"
+        VARCHAR party50 "정당명50"   
+        VARCHAR candidate01 "후보자명1"
+        VARCHAR candidate50 "후보자명50"
+        INT voteCount01 "득표수1"
+        INT voteCount50 "득표수50"
+    }
+    
+    ELECTION_CODE {
+        VARCHAR electionId PK "선거코드"
+        VARCHAR electionTypeCode "선거종류코드"
+        VARCHAR electionName "선거명"
+        DATE electionDate "선거일자"
+    }
+    
+    COUNTY_CODE {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR countyName PK "구시군명" 
+        INT countyOrder "순서"
+        VARCHAR cityName "상위시도명"
+    }
+    
+    CONSTITUENCY_CODE {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR electionTypeCode "선거종류코드"
+        VARCHAR constituencyName "선거구명"
+        VARCHAR cityName "시도명"
+        VARCHAR countyName "구시군명"  
+        INT electedCount "선출정수"
+        VARCHAR constituencyOrder "순서"
+    }
+    
+    PARTY_CODE {
+        VARCHAR electionId PK "선거ID" 
+        VARCHAR partyName "정당명"
+        INT partyOrder "순서"  
+    }
+      
+    JOB_CODE {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR jobId PK "직업코드"
+        VARCHAR jobName "직업명"  
+        INT jobOrder "순서"
+    }
+    
+    EDUCATION_CODE {
+        VARCHAR electionId PK "선거ID" 
+        VARCHAR educationId PK "학력코드"
+        VARCHAR educationName "학력명"
+        INT educationOrder "순서"  
+    }
+
+    PRELIM_CANDIDATE {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR electionTypeCode PK "선거종류코드"  
+        VARCHAR candidateId PK "후보자ID"
+        VARCHAR constituencyName "선거구명"
+        VARCHAR cityName "시도명"
+        VARCHAR countyName "구시군명"
+        VARCHAR partyName "정당명"
+        VARCHAR name "한글성명"
+        VARCHAR hanjaMeaning "한자성명"
+        VARCHAR gender "성별"
+        DATE birthday "생년월일"
+        INT age "연령"
+        VARCHAR address "주소" 
+        VARCHAR jobId "직업ID"
+        VARCHAR job "직업"
+        VARCHAR educationId "학력ID"
+        VARCHAR education "학력"
+        VARCHAR career1 "경력1"
+        VARCHAR career2 "경력2"
+        DATE registerDate "등록일"
+        VARCHAR status "등록상태"
+    }
+
+    CANDIDATE {
+        VARCHAR electionId PK "선거ID"
+        VARCHAR electionTypeCode PK "선거종류코드"  
+        VARCHAR candidateId PK "후보자ID"
+        VARCHAR constituencyName "선거구명"
+        VARCHAR cityName "시도명"
+        VARCHAR countyName "구시군명"
+        VARCHAR candidateNo "기호"
+        VARCHAR candidateNoDetail "기호상세"
+        VARCHAR partyName "정당명"
+        VARCHAR name "한글성명"
+        VARCHAR hanjaMeaning "한자성명"
+        VARCHAR gender "성별"
+        DATE birthday "생년월일"
+        INT age "연령"
+        VARCHAR address "주소" 
+        VARCHAR jobId "직업ID"
+        VARCHAR job "직업" 
+        VARCHAR educationId "학력ID"
+        VARCHAR education "학력"
+        VARCHAR career1 "경력1"
+        VARCHAR career2 "경력2"
+        VARCHAR status "등록상태"
+    }
+
+    WINNER_INFO ||--o{ JOB_CODE : "jobId"
+    WINNER_INFO ||--o{ EDUCATION_CODE : "educationId"
+    COUNTING_STATUS ||--o{ ELECTION_CODE : "electionId, electionTypeCode"
+    COUNTY_CODE ||--o| ELECTION_CODE : "electionId"
+    CONSTITUENCY_CODE ||--o{ ELECTION_CODE : "electionId, electionTypeCode"
+    PARTY_CODE ||--o{ ELECTION_CODE : "electionId"
+    JOB_CODE ||--o{ ELECTION_CODE : "electionId"  
+    EDUCATION_CODE ||--o{ ELECTION_CODE : "electionId"
+    PRELIM_CANDIDATE ||--o{ ELECTION_CODE : "electionId, electionTypeCode"
+    PRELIM_CANDIDATE ||--o{ JOB_CODE : "jobId"
+    PRELIM_CANDIDATE ||--o{ EDUCATION_CODE : "educationId" 
+    CANDIDATE ||--o{ ELECTION_CODE : "electionId, electionTypeCode"
+    CANDIDATE ||--o{ JOB_CODE : "jobId"
+    CANDIDATE ||--o{ EDUCATION_CODE : "educationId"
+
+
+```
+

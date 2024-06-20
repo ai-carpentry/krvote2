@@ -1,0 +1,39 @@
+---
+title: "당선자"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{당선자}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(krvote2)
+library(httr)
+library(jsonlite)
+```
+
+# 당선자 정보
+
+```{r}
+service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+
+getWinnerInfo(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+```
+
+
+# 전체 당선인 정보
+
+```{r}
+getAllWinnerInfo(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+```
+
