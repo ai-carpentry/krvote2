@@ -1,0 +1,39 @@
+---
+title: "후보자"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{후보자}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(krvote2)
+library(httr)
+library(jsonlite)
+```
+
+# 후보자
+
+```{r}
+service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+
+get_candidate_info(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+```
+
+# 전체 후보자
+
+```{r}
+get_all_candidate_info(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+```
+
+
