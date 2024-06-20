@@ -1,0 +1,54 @@
+---
+title: "투개표"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{투개표}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(krvote2)
+```
+
+# 투표
+
+```{r}
+service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+
+get_vote_info(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+```
+
+## 전체 투표
+
+```{r}
+votes_df <- get_all_vote_info(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+
+votes_df |> 
+  as_tibble()
+```
+      
+# 개표
+
+```{r}
+get_count_info(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+```
+
+## 전체 투표
+
+```{r}
+count_df <- get_all_count_info(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+
+count_df |> 
+  as_tibble()
+```
+      
