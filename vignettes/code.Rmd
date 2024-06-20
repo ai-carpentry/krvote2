@@ -42,55 +42,55 @@ library(httr)
 library(tidyverse)
 library(jsonlite)
 
-data_api_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
 ```
 
 ## 선거코드 조회
 
-선거코드를 조회하려면 `getCommonSgCodeList()` 함수를 사용합니다:
+선거코드를 조회하려면 `get_elections()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-getCommonSgCodeList(serviceKey = data_api_key)
+get_elections(serviceKey = service_key)
 ```
 
 ## 구시군코드 조회
 
-구시군코드를 조회하려면 `getCommonGusigunCodeList()` 함수를 사용합니다:
+구시군코드를 조회하려면 `get_sigungu()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-getCommonGusigunCodeList(serviceKey = data_api_key, sgId = "20220309")
+get_sigungu(serviceKey = service_key, sgId = "20220309")
 ```
 
 ## 선거구코드 조회
 
-선거구코드를 조회하려면 `getCommonSggCodeList()` 함수를 사용합니다:
+선거구코드를 조회하려면 `get_constituencies()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-getCommonSggCodeList(serviceKey = data_api_key, sgId = "20220309", sgTypecode = "1")
+get_constituencies(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
 ```
 
 ## 정당코드 조회
 
-정당코드를 조회하려면 `getCommonPartyCodeList()` 함수를 사용합니다:
+정당코드를 조회하려면 `get_parties()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-getCommonPartyCodeList(serviceKey = data_api_key, sgId = "20220309")
+get_parties(serviceKey = service_key, sgId = "20220309")
 ```
 
 ## 직업코드 조회
 
-직업코드를 조회하려면 `getCommonJobCodeList()` 함수를 사용합니다:
+직업코드를 조회하려면 `get_occupations()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-getCommonJobCodeList(serviceKey = data_api_key, sgId = "20220309")
+get_occupations(serviceKey = service_key, sgId = "20220309")
 ```
 
 ## 학력코드 조회
 
-학력코드를 조회하려면 `getCommonEduBckgrdCodeList()` 함수를 사용합니다:
+학력코드를 조회하려면 `get_education_levels()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-getCommonEduBckgrdCodeList(serviceKey = data_api_key, sgId = "20220309")
+get_education_levels(serviceKey = service_key, sgId = "20220309")
 ```
 
 
