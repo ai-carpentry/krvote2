@@ -1,0 +1,42 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# krvote2
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+krvote2 패키지는 대한민국 중앙선거관리위원회에서 제공하는 선거 관련 데이터를 조회하고 분석하는 기능을 제공합니다.
+
+## 설치 방법
+
+GitHub에서 krvote2의 개발 버전을 설치할 수 있습니다:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("ai-carpentry/krvote2")
+```
+
+## 사용 예제
+
+선거코드 데이터를 조회하는 기본적인 예제입니다:
+
+```{r example}
+library(krvote2)
+library(tidyverse)
+library(httr)
+library(jsonlite)
+
+getCommonSgCodeList(serviceKey = Sys.getenv("DATA_GO_DECODE_KEY"))
+```
+
