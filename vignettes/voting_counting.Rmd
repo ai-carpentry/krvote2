@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 library(krvote2)
 library(httr)
 library(jsonlite)
+library(tibble)
 
 # 서비스 키 설정
 service_key <- Sys.getenv("DATA_GO_DECODE_KEY")

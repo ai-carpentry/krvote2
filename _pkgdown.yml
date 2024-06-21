@@ -1,0 +1,51 @@
+url: https://ai-carpentry.github.io/krvote2/
+template:
+  bootstrap: 5
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, tutorials, news]
+    right: [search, github]
+
+reference:
+- title: "선거 정보 조회"
+  desc: "선거 관련 기본 정보 조회 함수"
+  contents:
+  - get_elections
+  - get_sigungu
+  - get_constituencies
+  - get_constituency_voters
+  - get_sido_voters
+  - get_sigungu_voters
+  - get_emd_voters
+  - get_voting_district_voters
+
+- title: "투개표 정보 조회"
+  desc: "투표 및 개표 결과 조회 함수"
+  contents:
+  - get_vote_info
+  - get_count_info
+
+- title: "후보자 정보 조회"
+  desc: "후보자 관련 정보 조회 함수"
+  contents:
+  - get_candidate_info
+  - get_preliminary_candidate_info
+  - get_winner_info
+
+- title: "정당 및 기타 정보"
+  desc: "정당, 직업, 학력 등 조회 함수"
+  contents:
+  - get_parties
+  - get_occupations
+  - get_education_levels
+
+- title: "전체 데이터 조회"
+  desc: "모든 데이터를 한 번에 조회하는 함수"
+  contents:
+  - starts_with("get_all_")
+
+- title: "유틸리티 함수"
+  desc: "API 키 설정 등 유틸리티 함수"
+  contents:
+  - set_krvote2_key
