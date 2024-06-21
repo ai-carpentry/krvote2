@@ -24,7 +24,16 @@ GitHub에서 krvote2의 개발 버전을 설치할 수 있습니다:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("ai-carpentry/krvote2")
+devtools::install_github("ai-carpentry/krvote2", build_vignettes = TRUE)
+```
+
+PDF 파일 오류가 계신 분은 다음 명령어로 인코딩 문제를 피해서 설치할 수 있습니다.
+
+``` r
+withr::with_locale(
+  new = c("LC_CTYPE" = "C"),
+  code = devtools::install_github("ai-carpentry/krvote2", build_vignettes = TRUE)
+)
 ```
 
 ## 사용 예제

@@ -55,7 +55,7 @@ elections <- get_elections()
 선거코드를 조회하려면 `get_elections()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-get_elections(serviceKey = service_key)
+get_elections()
 ```
 
 ## 구시군코드 조회
@@ -63,7 +63,7 @@ get_elections(serviceKey = service_key)
 구시군코드를 조회하려면 `get_sigungu()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-get_sigungu(serviceKey = service_key, sgId = "20220309")
+get_sigungu(sgId = "20220309")
 ```
 
 ## 선거구코드 조회
@@ -71,7 +71,7 @@ get_sigungu(serviceKey = service_key, sgId = "20220309")
 선거구코드를 조회하려면 `get_constituencies()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-get_constituencies(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+get_constituencies(sgId = "20220309", sgTypecode = "1")
 ```
 
 ## 정당코드 조회
@@ -79,7 +79,7 @@ get_constituencies(serviceKey = service_key, sgId = "20220309", sgTypecode = "1"
 정당코드를 조회하려면 `get_parties()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-get_parties(serviceKey = service_key, sgId = "20220309")
+get_parties(sgId = "20220309")
 ```
 
 ## 직업코드 조회
@@ -87,7 +87,7 @@ get_parties(serviceKey = service_key, sgId = "20220309")
 직업코드를 조회하려면 `get_occupations()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-get_occupations(serviceKey = service_key, sgId = "20220309")
+get_occupations(sgId = "20220309")
 ```
 
 ## 학력코드 조회
@@ -95,7 +95,7 @@ get_occupations(serviceKey = service_key, sgId = "20220309")
 학력코드를 조회하려면 `get_education_levels()` 함수를 사용합니다:
 
 ```{r, eval = TRUE}
-get_education_levels(serviceKey = service_key, sgId = "20220309")
+get_education_levels(sgId = "20220309")
 ```
 
 
