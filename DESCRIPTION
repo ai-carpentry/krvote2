@@ -1,6 +1,6 @@
 Package: krvote2
 Title: Korea Election Datasets
-Version: 0.0.1.9000
+Version: 0.0.1.9001
 Authors@R: 
     person("Kwangchun", "Lee", , "kwangchun.lee.7@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5080-2309"))
