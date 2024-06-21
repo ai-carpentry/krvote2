@@ -42,7 +42,12 @@ library(httr)
 library(tidyverse)
 library(jsonlite)
 
+# 서비스 키 설정
 service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+set_krvote2_key(service_key)
+
+# 함수 사용
+elections <- get_elections()
 ```
 
 ## 선거코드 조회

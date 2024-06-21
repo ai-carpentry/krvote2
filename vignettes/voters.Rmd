@@ -1,0 +1,108 @@
+---
+title: "유권자"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{유권자}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## 소개
+
+krvote2 패키지는 대한민국 선거 정보, 특히 선거인수 현황 정보를 쉽게 가져올 수 있도록 도와주는 R 패키지입니다. 이 패키지는 중앙선거관리위원회에서 제공하는 공공 API를 활용하여 다양한 수준의 선거인수 정보를 제공합니다.
+
+## 사용 방법
+
+먼저 패키지를 로드하고 API 키를 설정합니다. API 키는 [DATA.GO.KR](https://www.data.go.kr/)에서 발급받을 수 있습니다. 발급받은 API 키는 환경변수로 설정하거나 직접 입력할 수 있습니다.
+
+```{r setup}
+library(krvote2)
+library(httr)
+library(jsonlite)
+
+# 서비스 키 설정
+service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+set_krvote2_key(service_key)
+```
+
+### 선거구별 선거인수 정보 조회
+
+```{r}
+constituency_voters <- get_constituency_voters(
+  sgId = "20200415",
+  sgTypecode = "2",
+  sdName = "서울특별시"
+)
+head(constituency_voters)
+```
+
+### 시도별 선거인수 정보 조회
+
+```{r}
+sido_voters <- get_sido_voters(sgId = "20200415")
+head(sido_voters)
+```
+
+### 구시군별 선거인수 정보 조회
+
+```{r}
+sigungu_voters <- get_sigungu_voters(
+  sgId = "20200415",
+  sdName = "서울특별시"
+)
+head(sigungu_voters)
+```
+
+### 읍면동별 선거인수 정보 조회
+
+```{r}
+emd_voters <- get_emd_voters(
+  sgId = "20200415",
+  sdName = "서울특별시",
+  wiwName = "종로구"
+)
+head(emd_voters)
+```
+
+### 투표구별 선거인수 정보 조회
+
+```{r}
+voting_district_voters <- get_voting_district_voters(
+  sgId = "20200415",
+  sdName = "서울특별시",
+  wiwName = "종로구"
+)
+head(voting_district_voters)
+```
+
+### 모든 선거인수 정보 한 번에 조회
+
+```{r}
+all_voters <- get_all_voters(
+  sgId = "20200415",
+  sgTypecode = "2",
+  sdName = "서울특별시",
+  wiwName = "종로구"
+)
+str(all_voters)
+```
+
+## 주의사항
+
+- API 사용량 제한이 있을 수 있으므로, 대량의 데이터를 가져올 때는 주의가 필요합니다.
+- 선거 ID(sgId)와 선거종류코드(sgTypecode)는 중앙선거관리위원회의 기준을 따릅니다. 정확한 값을 사용해야 합니다.
+- 일부 함수는 특정 매개변수가 필요할 수 있습니다. 예를 들어, `get_constituency_voters()`는 `sgTypecode`가 필요합니다.
+
+## 결론
+
+krvote2 패키지를 사용하면 대한민국의 선거인수 현황 정보를 쉽고 효율적으로 가져올 수 있습니다. 이 정보는 선거 분석, 인구통계 연구, 정책 결정 등 다양한 분야에서 활용될 수 있습니다.

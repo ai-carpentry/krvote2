@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 library(krvote2)
 library(httr)
 library(jsonlite)
+
+# 서비스 키 설정
+service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
+set_krvote2_key(service_key)
 ```
 
 # 당선자 정보
@@ -27,13 +31,13 @@ library(jsonlite)
 ```{r}
 service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
 
-getWinnerInfo(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+get_winner_info(sgId = "20220309", sgTypecode = "1")
 ```
 
 
 # 전체 당선인 정보
 
 ```{r}
-getAllWinnerInfo(serviceKey = service_key, sgId = "20220309", sgTypecode = "1")
+get_all_winner_info(sgId = "20220309", sgTypecode = "1")
 ```
 

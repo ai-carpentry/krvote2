@@ -1,6 +1,5 @@
 #' 예비후보자 정보 조회
 #'
-#' @param serviceKey 공공데이터포털에서 발급받은 서비스키
 #' @param sgId 선거ID
 #' @param sgTypecode 선거종류코드
 #' @param sggName 선거구명 (옵션)
@@ -15,10 +14,11 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#' get_preliminary_candidate_info(serviceKey = "your_service_key", sgId = "20220309", sgTypecode = "1")
-get_preliminary_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName = NULL, sdName = NULL,
+#' get_preliminary_candidate_info(sgId = "20220309", sgTypecode = "1")
+get_preliminary_candidate_info <- function(sgId, sgTypecode, sggName = NULL, sdName = NULL,
                                            pageNo = 1, numOfRows = 10) {
 
+  serviceKey <- get_krvote2_key()
   base_url <- "http://apis.data.go.kr/9760000/PofelcddInfoInqireService/getPoelpcddRegistSttusInfoInqire"
 
   query_params <- list(
@@ -58,7 +58,6 @@ get_preliminary_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName
 
 #' 후보자 정보 조회
 #'
-#' @param serviceKey 공공데이터포털에서 발급받은 서비스키
 #' @param sgId 선거ID
 #' @param sgTypecode 선거종류코드
 #' @param sggName 선거구명 (옵션)
@@ -73,10 +72,11 @@ get_preliminary_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName
 #' @importFrom jsonlite fromJSON
 #'
 #' @examples
-#' get_candidate_info(serviceKey = "your_service_key", sgId = "20220309", sgTypecode = "1")
-get_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName = NULL, sdName = NULL,
+#' get_candidate_info(sgId = "20220309", sgTypecode = "1")
+get_candidate_info <- function(sgId, sgTypecode, sggName = NULL, sdName = NULL,
                                pageNo = 1, numOfRows = 10) {
 
+  serviceKey <- get_krvote2_key()
   base_url <- "http://apis.data.go.kr/9760000/PofelcddInfoInqireService/getPofelcddRegistSttusInfoInqire"
 
   query_params <- list(
@@ -116,7 +116,6 @@ get_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName = NULL, sdN
 
 #' 모든 예비후보자 정보 조회
 #'
-#' @param serviceKey 공공데이터포털에서 발급받은 서비스키
 #' @param sgId 선거ID
 #' @param sgTypecode 선거종류코드
 #' @param sggName 선거구명 (옵션)
@@ -126,14 +125,15 @@ get_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName = NULL, sdN
 #' @export
 #'
 #' @examples
-#' get_all_preliminary_candidate_info(serviceKey = "your_service_key", sgId = "20220309", sgTypecode = "1")
-get_all_preliminary_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName = NULL, sdName = NULL) {
+#' get_all_preliminary_candidate_info(sgId = "20220309", sgTypecode = "1")
+get_all_preliminary_candidate_info <- function(sgId, sgTypecode, sggName = NULL, sdName = NULL) {
+
   pageNo <- 1
   numOfRows <- 100
   allData <- data.frame()
 
   repeat {
-    result <- get_preliminary_candidate_info(serviceKey, sgId, sgTypecode, sggName, sdName,
+    result <- get_preliminary_candidate_info(sgId, sgTypecode, sggName, sdName,
                                              pageNo = pageNo, numOfRows = numOfRows)
 
     if (nrow(result) == 0) break
@@ -150,7 +150,6 @@ get_all_preliminary_candidate_info <- function(serviceKey, sgId, sgTypecode, sgg
 
 #' 모든 후보자 정보 조회
 #'
-#' @param serviceKey 공공데이터포털에서 발급받은 서비스키
 #' @param sgId 선거ID
 #' @param sgTypecode 선거종류코드
 #' @param sggName 선거구명 (옵션)
@@ -160,14 +159,14 @@ get_all_preliminary_candidate_info <- function(serviceKey, sgId, sgTypecode, sgg
 #' @export
 #'
 #' @examples
-#' get_all_candidate_info(serviceKey = "your_service_key", sgId = "20220309", sgTypecode = "1")
-get_all_candidate_info <- function(serviceKey, sgId, sgTypecode, sggName = NULL, sdName = NULL) {
+#' get_all_candidate_info(sgId = "20220309", sgTypecode = "1")
+get_all_candidate_info <- function(sgId, sgTypecode, sggName = NULL, sdName = NULL) {
   pageNo <- 1
   numOfRows <- 100
   allData <- data.frame()
 
   repeat {
-    result <- get_candidate_info(serviceKey, sgId, sgTypecode, sggName, sdName,
+    result <- get_candidate_info(sgId, sgTypecode, sggName, sdName,
                                  pageNo = pageNo, numOfRows = numOfRows)
 
     if (nrow(result) == 0) break

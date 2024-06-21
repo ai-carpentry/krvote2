@@ -4,17 +4,9 @@
 \alias{get_all_candidate_info}
 \title{모든 후보자 정보 조회}
 \usage{
-get_all_candidate_info(
-  serviceKey,
-  sgId,
-  sgTypecode,
-  sggName = NULL,
-  sdName = NULL
-)
+get_all_candidate_info(sgId, sgTypecode, sggName = NULL, sdName = NULL)
 }
 \arguments{
-\item{serviceKey}{공공데이터포털에서 발급받은 서비스키}
-
 \item{sgId}{선거ID}
 
 \item{sgTypecode}{선거종류코드}
@@ -30,5 +22,5 @@ get_all_candidate_info(
 모든 후보자 정보 조회
 }
 \examples{
-get_all_candidate_info(serviceKey = "your_service_key", sgId = "20220309", sgTypecode = "1")
+get_all_candidate_info(sgId = "20220309", sgTypecode = "1")
 }

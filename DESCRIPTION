@@ -1,12 +1,17 @@
 Package: krvote2
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Korea Election Datasets
+Version: 0.0.1.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Kwangchun", "Lee", , "kwangchun.lee.7@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5080-2309"))
+Description: Provides convenient access to Korean election data through the 
+    National Election Commission's open API. This package offers functions 
+    to retrieve various election-related information including lists of 
+    elections, administrative divisions, electoral districts, political parties, 
+    candidate occupations, and education levels. It simplifies the process of 
+    fetching both single-page and complete datasets, making it easier for 
+    researchers and analysts to work with Korean election data.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
