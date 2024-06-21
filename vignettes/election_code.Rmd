@@ -39,7 +39,6 @@ devtools::install_github("ai-carpentry/krvote2")
 ```{r setup}
 library(krvote2)
 library(httr)
-library(tidyverse)
 library(jsonlite)
 
 # 서비스 키 설정

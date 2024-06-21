@@ -22,5 +22,8 @@ get_all_candidate_info(sgId, sgTypecode, sggName = NULL, sdName = NULL)
 모든 후보자 정보 조회
 }
 \examples{
+\dontrun{
+set_krvote2_key("your_api_key_here")
 get_all_candidate_info(sgId = "20220309", sgTypecode = "1")
+}
 }

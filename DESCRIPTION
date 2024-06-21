@@ -18,7 +18,8 @@ RoxygenNote: 7.3.1
 VignetteBuilder: knitr
 Imports:
     httr,
-    jsonlite
+    jsonlite,
+    xml2
 Suggests: 
     knitr,
     rmarkdown

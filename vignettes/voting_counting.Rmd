@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
 library(krvote2)
 library(httr)
 library(jsonlite)
-library(tibble)
 
 # 서비스 키 설정
 service_key <- Sys.getenv("DATA_GO_DECODE_KEY")
@@ -39,7 +38,7 @@ get_vote_info(sgId = "20220309", sgTypecode = "1")
 votes_df <- get_all_vote_info(sgId = "20220309", sgTypecode = "1")
 
 votes_df |> 
-  as_tibble()
+  head()
 ```
       
 # 개표
@@ -54,6 +53,6 @@ get_count_info(sgId = "20220309", sgTypecode = "1")
 count_df <- get_all_count_info(sgId = "20220309", sgTypecode = "1")
 
 count_df |> 
-  as_tibble()
+  head()
 ```
       

@@ -159,7 +159,10 @@ get_all_preliminary_candidate_info <- function(sgId, sgTypecode, sggName = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' set_krvote2_key("your_api_key_here")
 #' get_all_candidate_info(sgId = "20220309", sgTypecode = "1")
+#' }
 get_all_candidate_info <- function(sgId, sgTypecode, sggName = NULL, sdName = NULL) {
   pageNo <- 1
   numOfRows <- 100
